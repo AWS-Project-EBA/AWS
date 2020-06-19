@@ -9,6 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ServiceLocationsActivity"></activity>
+        <activity android:name=".ServicesActivity" />
+        <activity android:name=".FinanceActivity" />
+        <activity android:name=".AgendaActivity" />
+        <activity android:name=".InboxActivity" />
+        <activity android:name=".PastAppActivity" />
+        <activity android:name=".IncomingAppActivity" />
+        <activity android:name=".HRManagerActivity" />
+        <activity android:name=".CareerPathActivity" />
+        <activity android:name=".NavActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

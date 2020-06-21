@@ -2,10 +2,7 @@ package com.example.rapunzel
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
@@ -13,7 +10,6 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.activity_agenda.*
 import kotlinx.android.synthetic.main.agenda_row.view.*
-import kotlinx.android.synthetic.main.hr_row.view.*
 import okhttp3.*
 import java.io.IOException
 
@@ -24,7 +20,7 @@ class AgendaActivity : AppCompatActivity() {
         setContentView(R.layout.activity_agenda)
         Log.d("Agenda" , "Agenda")
 
-        supportActionBar?.title = "HR Manager"
+        supportActionBar?.title = "My Agenda"
 
         runOnUiThread {
             fetchAgenda()
@@ -90,7 +86,7 @@ class Agenda( val date: List<String> , val hour: List<String> , val customer: Li
 
 }
 
-class AgendaItem(val customer: String , val date: String , val hour: String): Item<ViewHolder>() {
+class AgendaItem(val customer: String, val date: String, val hour: String): Item<ViewHolder>() {
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
 

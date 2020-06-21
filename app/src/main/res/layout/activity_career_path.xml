@@ -4,6 +4,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/girly4"
     tools:context=".CareerPathActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="204dp"
+        android:layout_height="173dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="96dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="224dp"
+        android:layout_marginEnd="156dp"
+        android:gravity="center"
+        android:text="Name"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="415dp"
+        android:layout_height="356dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/Done"
+            android:layout_width="94dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="52dp"
+            android:text="Job Done:"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/job_done"
+            android:layout_width="81dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="60dp"
+            android:text="Count"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/current"
+            android:layout_width="116dp"
+            android:layout_height="27dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="136dp"
+            android:text="Current Level:"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/currlev"
+            android:layout_width="81dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="136dp"
+            android:layout_marginEnd="60dp"
+            android:text="Count"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/next"
+            android:layout_width="206dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="212dp"
+            android:text="Remaining for next level:"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nextlev"
+            android:layout_width="81dp"
+            android:layout_height="22dp"
+            android:layout_marginTop="212dp"
+            android:layout_marginEnd="60dp"
+            android:text="Count"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

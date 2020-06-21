@@ -21,7 +21,7 @@ class HRManagerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hrmanager)
 
-        supportActionBar?.title = "HR Manager"
+        supportActionBar?.title = "My HR Manager"
 
 
         adapter.add(HRItem())

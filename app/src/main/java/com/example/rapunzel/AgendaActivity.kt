@@ -15,6 +15,8 @@ import java.io.IOException
 
 class AgendaActivity : AppCompatActivity() {
 
+    val main=Singleton.instance
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agenda)
@@ -32,7 +34,7 @@ class AgendaActivity : AppCompatActivity() {
 
     fun fetchAgenda(){
 
-        val url = "https://l5lo98pz4j.execute-api.eu-central-1.amazonaws.com/prod/agenda?id=12"
+        val url = "https://l5lo98pz4j.execute-api.eu-central-1.amazonaws.com/prod/agenda?id="+(main.id-123).toString()
 
         val request = Request.Builder().url(url).build()
 

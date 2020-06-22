@@ -15,6 +15,8 @@ import java.io.IOException
 
 class HRManagerActivity : AppCompatActivity() {
 
+    val main=Singleton.instance
+
     val adapter = GroupAdapter<ViewHolder>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +40,7 @@ class HRManagerActivity : AppCompatActivity() {
     fun fetchJson(){
         println("Attempting to fetch")
 
-        val url = "https://fg0l1o6kx3.execute-api.eu-central-1.amazonaws.com/prod/careerpath?id=12"
+        val url = "https://fg0l1o6kx3.execute-api.eu-central-1.amazonaws.com/prod/careerpath?id="+(main.id-123).toString()
 
         val request = Request.Builder().url(url).build()
 

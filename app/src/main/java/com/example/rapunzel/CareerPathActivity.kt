@@ -10,6 +10,8 @@ import java.io.IOException
 
 class CareerPathActivity : AppCompatActivity() {
 
+    val main=Singleton.instance
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_career_path)
@@ -22,7 +24,9 @@ class CareerPathActivity : AppCompatActivity() {
     }
     fun fetchCareer(){
 
-        val url = "https://fg0l1o6kx3.execute-api.eu-central-1.amazonaws.com/prod/careerpath?id=12"
+        val url = "https://fg0l1o6kx3.execute-api.eu-central-1.amazonaws.com/prod/careerpath?id="+(main.id-123).toString()
+
+        println(main.id.toString()+" "+main.email)
 
         val request = Request.Builder().url(url).build()
 

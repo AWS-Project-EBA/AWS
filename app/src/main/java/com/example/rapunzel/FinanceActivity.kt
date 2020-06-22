@@ -11,6 +11,8 @@ import java.io.IOException
 
 class FinanceActivity : AppCompatActivity() {
 
+    val main=Singleton.instance
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_finance)
@@ -23,7 +25,7 @@ class FinanceActivity : AppCompatActivity() {
     }
     fun fetchFinance(){
 
-        val url = "https://8fa1fnj3d6.execute-api.eu-central-1.amazonaws.com/prod/financialsituation?id=12"
+        val url = "https://8fa1fnj3d6.execute-api.eu-central-1.amazonaws.com/prod/financialsituation?id="+(main.id-123).toString()
 
         val request = Request.Builder().url(url).build()
 

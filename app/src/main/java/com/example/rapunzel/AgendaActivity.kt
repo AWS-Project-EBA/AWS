@@ -28,13 +28,11 @@ class AgendaActivity : AppCompatActivity() {
             fetchAgenda()
         }
 
-        //fetchAgenda()
-
     }
 
     fun fetchAgenda(){
 
-        val url = "https://l5lo98pz4j.execute-api.eu-central-1.amazonaws.com/prod/agenda?id="+(main.id-123).toString()
+        val url = "https://l5lo98pz4j.execute-api.eu-central-1.amazonaws.com/prod/agenda?id="+(main.id).toString()
 
         val request = Request.Builder().url(url).build()
 
@@ -47,30 +45,45 @@ class AgendaActivity : AppCompatActivity() {
                 val body = response.body?.string()
                 Log.d("Rapu", body!!)
 
-                val gson = GsonBuilder().create()
+                if(body=="{}")
+                {
+                    runOnUiThread( Runnable {
+                        kotlin.run {
+                            val adapter = GroupAdapter<ViewHolder>()
+                            adapter.add(AgendaItem( "","","" ) )
 
-                val agenda =  gson.fromJson(body, Agenda::class.java)
-
-                var counter = agenda.date.size
-
-                Log.d("Rapu" , "size is: ${agenda.date.size}")
-
-                runOnUiThread( Runnable {
-                    kotlin.run {
-                        val adapter = GroupAdapter<ViewHolder>()
-
-                        for(i in 0 until counter){
-                            Log.d("Rapu" , "is is: ${agenda.date[i]}")
-                            adapter.add(AgendaItem( agenda.customer[i] , agenda.date[i] , agenda.hour[i] ) )
+                            recyclerview_agenda.adapter = adapter
                         }
+                    })
+                }
+                else {
+                    val gson = GsonBuilder().create()
 
-                        recyclerview_agenda.adapter = adapter
-                    }
-                })
+                    val agenda = gson.fromJson(body, Agenda::class.java)
 
+                    var counter = agenda.date.size
 
+                    Log.d("Rapu", "size is: ${agenda.date.size}")
 
-                //Log.d("Rapu" , agenda.dates!!.size.toString()   )
+                    runOnUiThread(Runnable {
+                        kotlin.run {
+                            val adapter = GroupAdapter<ViewHolder>()
+
+                            for (i in 0 until counter) {
+                                Log.d("Rapu", "is is: ${agenda.date[i]}")
+                                adapter.add(
+                                    AgendaItem(
+                                        agenda.customer[i],
+                                        agenda.date[i],
+                                        agenda.hour[i]
+                                    )
+                                )
+                            }
+
+                            recyclerview_agenda.adapter = adapter
+                        }
+                    })
+                }
             }
 
             override fun onFailure(call: Call, e: IOException) {

@@ -1,8 +1,11 @@
 package com.example.rapunzel
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
+import android.widget.TextView.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,8 +15,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import okhttp3.*
 import java.io.IOException
-import kotlin.concurrent.thread
-import kotlin.coroutines.coroutineContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
             GlobalScope.launch(context = Dispatchers.IO) {
                 println("launched coroutine 1")
+                println(main.id.toString() + " " + main.email)
                 fetchLogin(email)
                 delay(5000)
                 println("Here after a delay of 5 seconds")
@@ -41,6 +43,9 @@ class MainActivity : AppCompatActivity() {
                     if(main.id!=-1 && (main.email.equals(email))) {
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                         startActivity(intent)
+                    }
+                    else{
+                        showHide(wrongCred)
                     }
                 }
             }
@@ -67,13 +72,19 @@ class MainActivity : AppCompatActivity() {
 
                 val login =  gson.fromJson(body, Login::class.java)
 
-                runOnUiThread( Runnable {
-                    kotlin.run {
-                        Log.d("Rapu" , "is is: ${login.id}")
-                        main.id=login.id
-                        main.email=email
-                    }
-                })
+                if(login.message=="Internal server error")
+                    main.id=-1
+                else {
+                    runOnUiThread(Runnable {
+                        kotlin.run {
+                            Log.d("Rapu", "is is: ${login.id}")
+                            main.id = login.id
+                            main.email = email
+                            val temp=email.substringBefore(delimiter = '@')
+                            main.name=temp
+                        }
+                    })
+                }
             }
 
             override fun onFailure(call: Call, e: IOException) {
@@ -85,6 +96,19 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
-class Login( val id: Int) {
+
+class Login(val message:String, val id: Int) {
+
+}
+
+fun showHide(view:TextView) {
+    if (view.visibility == TextView.INVISIBLE)
+        view.visibility = VISIBLE
+    else{
+        if(view.currentTextColor==Color.parseColor("#FFFFFF"))
+            view.setTextColor(Color.parseColor("#00FF00"))
+        else
+            view.setTextColor(Color.parseColor("#FFFFFF"))
+    }
 
 }

@@ -8,11 +8,8 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_inbox.*
 import kotlinx.android.synthetic.main.activity_incoming_app.*
-import kotlinx.android.synthetic.main.activity_past_app.*
 import kotlinx.android.synthetic.main.incapp_row.view.*
-import kotlinx.android.synthetic.main.pastapp_row.view.*
 import okhttp3.*
 import java.io.IOException
 
@@ -23,6 +20,7 @@ class IncomingAppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_incoming_app)
+        supportActionBar?.title = "My Incoming Appointments"
 
         runOnUiThread {
             fetchIncApp()
@@ -32,7 +30,7 @@ class IncomingAppActivity : AppCompatActivity() {
 
     fun fetchIncApp(){
 
-        val url = "https://usek0py9b6.execute-api.eu-central-1.amazonaws.com/prod/myincomingappointments?id="+(main.id-123).toString()
+        val url = "https://usek0py9b6.execute-api.eu-central-1.amazonaws.com/prod/myincomingappointments?id="+(main.id).toString()
 
         val request = Request.Builder().url(url).build()
 
@@ -45,30 +43,45 @@ class IncomingAppActivity : AppCompatActivity() {
                 val body = response.body?.string()
                 Log.d("Rapu", body!!)
 
-                val gson = GsonBuilder().create()
+                if(body=="{}")
+                {
+                    runOnUiThread( Runnable {
+                        kotlin.run {
+                            val adapter = GroupAdapter<ViewHolder>()
+                            adapter.add(IncAppItem( "","","","" ) )
 
-                val incapp =  gson.fromJson(body, IncApp::class.java)
-
-                var counter = incapp.date.size
-
-                Log.d("Rapu" , "size is: ${incapp.date.size}")
-
-                runOnUiThread( Runnable {
-                    kotlin.run {
-                        val adapter = GroupAdapter<ViewHolder>()
-
-                        for(i in 0 until counter){
-                            Log.d("Rapu" , "is is: ${incapp.date[i]}")
-                            adapter.add(IncAppItem( incapp.customer[i] , incapp.date[i] , incapp.hour[i] , incapp.address[i] ) )
+                            recyclerview_incapp.adapter = adapter
                         }
+                    })
+                }
+                else {
+                    val gson = GsonBuilder().create()
 
-                        recyclerview_incapp.adapter = adapter
-                    }
-                })
+                    val incapp = gson.fromJson(body, IncApp::class.java)
 
+                    var counter = incapp.date.size
 
+                    Log.d("Rapu", "size is: ${incapp.date.size}")
 
-                //Log.d("Rapu" , agenda.dates!!.size.toString()   )
+                    runOnUiThread(Runnable {
+                        kotlin.run {
+                            val adapter = GroupAdapter<ViewHolder>()
+
+                            for (i in 0 until counter) {
+                                Log.d("Rapu", "is is: ${incapp.date[i]}")
+                                adapter.add(
+                                    IncAppItem(
+                                        incapp.customer[i],
+                                        incapp.date[i],
+                                        incapp.hour[i],
+                                        incapp.address[i]
+                                    )
+                                )
+                            }
+                            recyclerview_incapp.adapter = adapter
+                        }
+                    })
+                }
             }
 
             override fun onFailure(call: Call, e: IOException) {
@@ -76,8 +89,6 @@ class IncomingAppActivity : AppCompatActivity() {
             }
 
         } )
-
-
     }
 
 }

@@ -18,13 +18,15 @@ class CareerPathActivity : AppCompatActivity() {
 
         supportActionBar?.title = "My Career Path"
 
+        name.text=main.name
+
         runOnUiThread {
             fetchCareer()
         }
     }
     fun fetchCareer(){
 
-        val url = "https://fg0l1o6kx3.execute-api.eu-central-1.amazonaws.com/prod/careerpath?id="+(main.id-123).toString()
+        val url = "https://fg0l1o6kx3.execute-api.eu-central-1.amazonaws.com/prod/careerpath?id="+(main.id).toString()
 
         println(main.id.toString()+" "+main.email)
 
@@ -39,18 +41,29 @@ class CareerPathActivity : AppCompatActivity() {
                 val body = response.body?.string()
                 Log.d("Rapu", body!!)
 
-                val gson = GsonBuilder().create()
+                if(body=="{}"){
+                    runOnUiThread( Runnable {
+                        kotlin.run {
+                            job_done.text=""
+                            currlev.text=""
+                            nextlev.text=""
+                        }
+                    })
+                }
+                else {
+                    val gson = GsonBuilder().create()
 
-                val career =  gson.fromJson(body, Career::class.java)
+                    val career = gson.fromJson(body, Career::class.java)
 
-                runOnUiThread( Runnable {
-                    kotlin.run {
-                        Log.d("Rapu" , "is is: ${career.count}")
-                        job_done.text=career.count.toString()
-                        currlev.text=career.level.toString()
-                        nextlev.text=career.next_level.toString()
-                    }
-                })
+                    runOnUiThread(Runnable {
+                        kotlin.run {
+                            Log.d("Rapu", "is is: ${career.count}")
+                            job_done.text = career.count.toString()
+                            currlev.text = career.level.toString()
+                            nextlev.text = career.next_level.toString()
+                        }
+                    })
+                }
             }
 
             override fun onFailure(call: Call, e: IOException) {

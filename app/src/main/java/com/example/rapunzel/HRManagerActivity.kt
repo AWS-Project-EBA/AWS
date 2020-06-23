@@ -3,7 +3,6 @@ package com.example.rapunzel
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
@@ -40,7 +39,7 @@ class HRManagerActivity : AppCompatActivity() {
     fun fetchJson(){
         println("Attempting to fetch")
 
-        val url = "https://fg0l1o6kx3.execute-api.eu-central-1.amazonaws.com/prod/careerpath?id="+(main.id-123).toString()
+        val url = "https://fg0l1o6kx3.execute-api.eu-central-1.amazonaws.com/prod/careerpath?id="+(main.id).toString()
 
         val request = Request.Builder().url(url).build()
 

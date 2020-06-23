@@ -8,9 +8,7 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_agenda.*
 import kotlinx.android.synthetic.main.activity_past_app.*
-import kotlinx.android.synthetic.main.agenda_row.view.*
 import kotlinx.android.synthetic.main.pastapp_row.view.*
 import okhttp3.*
 import java.io.IOException
@@ -22,8 +20,7 @@ class PastAppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_past_app)
-
-        //https://zvgmt952a0.execute-api.eu-central-1.amazonaws.com/prod/mypastappointments?id=135
+        supportActionBar?.title = "My Past Appointments"
 
         runOnUiThread {
             fetchPastApp()
@@ -34,7 +31,7 @@ class PastAppActivity : AppCompatActivity() {
 
     fun fetchPastApp(){
 
-        val url = "https://zvgmt952a0.execute-api.eu-central-1.amazonaws.com/prod/mypastappointments?id="+(main.id-123).toString()
+        val url = "https://zvgmt952a0.execute-api.eu-central-1.amazonaws.com/prod/mypastappointments?id="+(main.id).toString()
 
         val request = Request.Builder().url(url).build()
 
@@ -47,30 +44,45 @@ class PastAppActivity : AppCompatActivity() {
                 val body = response.body?.string()
                 Log.d("Rapu", body!!)
 
-                val gson = GsonBuilder().create()
+                if(body=="{}")
+                {
+                    runOnUiThread( Runnable {
+                        kotlin.run {
+                            val adapter = GroupAdapter<ViewHolder>()
+                            adapter.add(PastAppItem( "","","","" ) )
 
-                val pastapp =  gson.fromJson(body, PastApp::class.java)
-
-                var counter = pastapp.date.size
-
-                Log.d("Rapu" , "size is: ${pastapp.date.size}")
-
-                runOnUiThread( Runnable {
-                    kotlin.run {
-                        val adapter = GroupAdapter<ViewHolder>()
-
-                        for(i in 0 until counter){
-                            Log.d("Rapu" , "is is: ${pastapp.date[i]}")
-                            adapter.add(PastAppItem( pastapp.customer[i] , pastapp.date[i] , pastapp.hour[i] , pastapp.address[i] ) )
+                            recyclerview_pastapp.adapter = adapter
                         }
+                    })
+                }
+                else {
+                    val gson = GsonBuilder().create()
 
-                        recyclerview_pastapp.adapter = adapter
-                    }
-                })
+                    val pastapp = gson.fromJson(body, PastApp::class.java)
 
+                    var counter = pastapp.date.size
 
+                    Log.d("Rapu", "size is: ${pastapp.date.size}")
 
-                //Log.d("Rapu" , agenda.dates!!.size.toString()   )
+                    runOnUiThread(Runnable {
+                        kotlin.run {
+                            val adapter = GroupAdapter<ViewHolder>()
+
+                            for (i in 0 until counter) {
+                                Log.d("Rapu", "is is: ${pastapp.date[i]}")
+                                adapter.add(
+                                    PastAppItem(
+                                        pastapp.customer[i],
+                                        pastapp.date[i],
+                                        pastapp.hour[i],
+                                        pastapp.address[i]
+                                    )
+                                )
+                            }
+                            recyclerview_pastapp.adapter = adapter
+                        }
+                    })
+                }
             }
 
             override fun onFailure(call: Call, e: IOException) {

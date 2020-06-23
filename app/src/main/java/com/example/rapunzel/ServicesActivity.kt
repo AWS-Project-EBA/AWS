@@ -1,5 +1,6 @@
 package com.example.rapunzel
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_services.*
 import kotlinx.android.synthetic.main.services_row.view.*
 import okhttp3.*
 import java.io.IOException
+import java.util.*
 
 class ServicesActivity : AppCompatActivity() {
 
@@ -29,7 +31,7 @@ class ServicesActivity : AppCompatActivity() {
     }
     fun fetchServices(){
 
-        val url = "https://iu8v4efr3m.execute-api.eu-central-1.amazonaws.com/prod/myservices?id="+(main.id-123).toString()
+        val url = "https://iu8v4efr3m.execute-api.eu-central-1.amazonaws.com/prod/myservices?id="+(main.id).toString()
 
         val request = Request.Builder().url(url).build()
 
@@ -42,26 +44,39 @@ class ServicesActivity : AppCompatActivity() {
                 val body = response.body?.string()
                 Log.d("Rapu", body!!)
 
-                val gson = GsonBuilder().create()
+                if (body == "{}") {
+                    runOnUiThread(Runnable {
+                        kotlin.run {
+                            val adapter = GroupAdapter<ViewHolder>()
+                            val name:List<String>
+                            name=Arrays.asList("")
+                            adapter.add(ServiceItem(name))
 
-                val service =  gson.fromJson(body, Services::class.java)
-
-                var counter = service.name.size
-
-                Log.d("Rapu" , "size is: ${service.name.size}")
-
-                runOnUiThread( Runnable {
-                    kotlin.run {
-                        val adapter = GroupAdapter<ViewHolder>()
-
-                        for(i in 0 until counter){
-                            Log.d("Rapu" , "is is: ${service.name[i]}")
-                            adapter.add(ServiceItem( service.name[i] ) )
+                            recyclerview_services.adapter = adapter
                         }
+                    })
+                } else {
+                    val gson = GsonBuilder().create()
 
-                        recyclerview_services.adapter = adapter
-                    }
-                })
+                    val service = gson.fromJson(body, Services::class.java)
+
+                    var counter = service.name.size
+
+                    Log.d("Rapu", "size is: ${service.name.size}")
+
+                    runOnUiThread(Runnable {
+                        kotlin.run {
+                            val adapter = GroupAdapter<ViewHolder>()
+
+                            for (i in 0 until counter) {
+                                Log.d("Rapu", "is is: ${service.name[i]}")
+                                adapter.add(ServiceItem(service.name[i]))
+                            }
+
+                            recyclerview_services.adapter = adapter
+                        }
+                    })
+                }
             }
 
             override fun onFailure(call: Call, e: IOException) {

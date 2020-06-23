@@ -8,7 +8,6 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.activity_agenda.*
 import kotlinx.android.synthetic.main.activity_inbox.*
 import kotlinx.android.synthetic.main.inbox_row.view.*
 import okhttp3.*
@@ -21,6 +20,7 @@ class InboxActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inbox)
+        supportActionBar?.title = "My Inbox"
 
         runOnUiThread {
             fetchInbox()
@@ -29,7 +29,7 @@ class InboxActivity : AppCompatActivity() {
 
     fun fetchInbox() {
 
-        val url = "https://lan7xw8ug4.execute-api.eu-central-1.amazonaws.com/prod/myinbox?id="+(main.id-123).toString()
+        val url = "https://lan7xw8ug4.execute-api.eu-central-1.amazonaws.com/prod/myinbox?id="+(main.id).toString()
 
         val request = Request.Builder().url(url).build()
 
@@ -43,26 +43,37 @@ class InboxActivity : AppCompatActivity() {
                 Log.d("Rapu" , "url for inbox is: $url")
                 Log.d("Rapu", body!!)
 
-                val gson = GsonBuilder().create()
+                if(body=="{}")
+                {
+                    runOnUiThread( Runnable {
+                        kotlin.run {
+                            val adapter = GroupAdapter<ViewHolder>()
+                            adapter.add(InboxItem( "","","" ) )
 
-                val inbox = gson.fromJson(body, Inbox::class.java)
-
-                var counter = inbox.date.size
-
-                runOnUiThread( Runnable {
-                    kotlin.run {
-                        val adapter = GroupAdapter<ViewHolder>()
-
-                        for(i in 0 until counter){
-                            Log.d("Rapu" , "is is: ${inbox.date[i]}")
-                            adapter.add(InboxItem( inbox.title[i] , inbox.body[i] , inbox.date[i] ) )
+                            recyclerview_inbox.adapter = adapter
                         }
+                    })
+                }
+                else {
+                    val gson = GsonBuilder().create()
 
-                        recyclerview_inbox.adapter = adapter
-                    }
-                })
+                    val inbox = gson.fromJson(body, Inbox::class.java)
 
-                //Log.d("Rapu" , agenda.dates!!.size.toString()   )
+                    var counter = inbox.date.size
+
+                    runOnUiThread(Runnable {
+                        kotlin.run {
+                            val adapter = GroupAdapter<ViewHolder>()
+
+                            for (i in 0 until counter) {
+                                Log.d("Rapu", "is is: ${inbox.date[i]}")
+                                adapter.add(InboxItem(inbox.title[i], inbox.body[i], inbox.date[i]))
+                            }
+
+                            recyclerview_inbox.adapter = adapter
+                        }
+                    })
+                }
             }
 
             override fun onFailure(call: Call, e: IOException) {

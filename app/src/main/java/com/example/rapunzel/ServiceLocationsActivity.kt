@@ -28,7 +28,7 @@ class ServiceLocationsActivity : AppCompatActivity() {
     }
     fun fetchServiceLocations(){
 
-        val url = "https://hdq5zzm6ya.execute-api.eu-central-1.amazonaws.com/prod/myserviceslocations?id="+(main.id-123).toString()
+        val url = "https://hdq5zzm6ya.execute-api.eu-central-1.amazonaws.com/prod/myserviceslocations?id="+(main.id).toString()
 
         val request = Request.Builder().url(url).build()
 
@@ -41,26 +41,40 @@ class ServiceLocationsActivity : AppCompatActivity() {
                 val body = response.body?.string()
                 Log.d("Rapu", body!!)
 
-                val gson = GsonBuilder().create()
+                if(body=="{}")
+                {
+                    runOnUiThread( Runnable {
+                        kotlin.run {
+                            val adapter = GroupAdapter<ViewHolder>()
+                            adapter.add(ServiceLocItem( "" ) )
 
-                val serviceloc =  gson.fromJson(body, ServiceLoc::class.java)
-
-                var counter = serviceloc.location.size
-
-                Log.d("Rapu" , "size is: ${serviceloc.location.size}")
-
-                runOnUiThread( Runnable {
-                    kotlin.run {
-                        val adapter = GroupAdapter<ViewHolder>()
-
-                        for(i in 0 until counter){
-                            Log.d("Rapu" , "is is: ${serviceloc.location[i]}")
-                            adapter.add(ServiceLocItem( serviceloc.location[i] ) )
+                            recyclerview_servicelocs.adapter = adapter
                         }
+                    })
+                }
 
-                        recyclerview_servicelocs.adapter = adapter
-                    }
-                })
+                else{
+                    val gson = GsonBuilder().create()
+
+                    val serviceloc =  gson.fromJson(body, ServiceLoc::class.java)
+
+                    var counter = serviceloc.location.size
+
+                    Log.d("Rapu" , "size is: ${serviceloc.location.size}")
+
+                    runOnUiThread( Runnable {
+                        kotlin.run {
+                            val adapter = GroupAdapter<ViewHolder>()
+
+                            for(i in 0 until counter){
+                                Log.d("Rapu" , "is is: ${serviceloc.location[i]}")
+                                adapter.add(ServiceLocItem( serviceloc.location[i] ) )
+                            }
+
+                            recyclerview_servicelocs.adapter = adapter
+                        }
+                    })
+                }
             }
 
             override fun onFailure(call: Call, e: IOException) {

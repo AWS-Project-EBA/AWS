@@ -45,7 +45,16 @@
             android:textAllCaps="false"
             android:textColor="#FFFBF8" />
 
-
+        <TextView
+            android:id="@+id/wrongCred"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Wrong Credentials! Please try again"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold|italic"
+            android:visibility="invisible" />
 
 
     </LinearLayout>

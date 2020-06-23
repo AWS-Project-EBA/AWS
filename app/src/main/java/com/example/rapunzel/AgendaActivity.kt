@@ -92,7 +92,7 @@ class AgendaItem(val customer: String, val date: String, val hour: String): Item
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
 
-        Picasso.get().load(R.drawable.hr).into(viewHolder.itemView.imageView_agenda)
+        Picasso.get().load(R.drawable.agenda).into(viewHolder.itemView.imageView_agenda)
 
         viewHolder.itemView.textView_agenda1.text = customer
         viewHolder.itemView.textView_agenda2.text = date

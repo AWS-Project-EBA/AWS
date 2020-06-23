@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textView_pastapp1"
+        android:id="@+id/textView_incapp1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -14,11 +14,11 @@
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView_pastapp"
-        app:layout_constraintTop_toTopOf="@+id/imageView_pastapp" />
+        app:layout_constraintStart_toEndOf="@+id/imageView_incapp"
+        app:layout_constraintTop_toTopOf="@+id/imageView_incapp" />
 
     <TextView
-        android:id="@+id/textView_pastapp2"
+        android:id="@+id/textView_incapp2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -27,25 +27,24 @@
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView_pastapp"
-        app:layout_constraintTop_toTopOf="@+id/imageView_pastapp" />
+        app:layout_constraintStart_toEndOf="@+id/imageView_incapp"
+        app:layout_constraintTop_toTopOf="@+id/imageView_incapp" />
 
     <TextView
-        android:id="@+id/textView_pastapp3"
+        android:id="@+id/textView_incapp3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="90dp"
-        android:layout_marginBottom="16dp"
         android:text="How my I help you?"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView_pastapp"
-        app:layout_constraintTop_toTopOf="@+id/imageView_pastapp" />
+        app:layout_constraintStart_toEndOf="@+id/imageView_incapp"
+        app:layout_constraintTop_toTopOf="@+id/imageView_incapp" />
 
     <TextView
-        android:id="@+id/textView_pastapp4"
+        android:id="@+id/textView_incapp4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -56,11 +55,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView_pastapp"
-        app:layout_constraintTop_toTopOf="@+id/imageView_pastapp" />
+        app:layout_constraintStart_toEndOf="@+id/imageView_incapp"
+        app:layout_constraintTop_toTopOf="@+id/imageView_incapp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageView_pastapp"
+        android:id="@+id/imageView_incapp"
         android:layout_width="96dp"
         android:layout_height="55dp"
         android:layout_marginStart="16dp"

@@ -92,7 +92,7 @@ class PastAppItem(val customer: String, val date: String, val hour: String , val
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
 
-        Picasso.get().load(R.drawable.hr).into(viewHolder.itemView.imageView_pastapp)
+        Picasso.get().load(R.drawable.pastap).into(viewHolder.itemView.imageView_pastapp)
 
         viewHolder.itemView.textView_pastapp1.text = customer
         viewHolder.itemView.textView_pastapp2.text = date

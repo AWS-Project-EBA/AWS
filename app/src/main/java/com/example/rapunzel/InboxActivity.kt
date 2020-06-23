@@ -82,7 +82,7 @@ class InboxItem(val title: String, val body: String, val date: String): Item<Vie
 
     override fun bind(viewHolder: ViewHolder, position: Int) {
 
-        Picasso.get().load(R.drawable.hr).into(viewHolder.itemView.imageView_inbox)
+        Picasso.get().load(R.drawable.inbox).into(viewHolder.itemView.imageView_inbox)
 
         viewHolder.itemView.textView_inbox1.text = title
         viewHolder.itemView.textView_inbox2.text = body

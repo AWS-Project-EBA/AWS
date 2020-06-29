@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import okhttp3.*
 import java.io.IOException
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(){
 
     val main=Singleton.instance
 

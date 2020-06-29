@@ -12,6 +12,6 @@
         android:columnWidth="150dp"
         android:horizontalSpacing="15dp"
         android:numColumns="auto_fit"
-        android:verticalSpacing="15dp" />
+        android:verticalSpacing="30dp" />
 
 </LinearLayout>

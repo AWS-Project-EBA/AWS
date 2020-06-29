@@ -1,5 +1,4 @@
-# AWS
-Project
+# AWS Project
 
 This is a term project made by us.
 

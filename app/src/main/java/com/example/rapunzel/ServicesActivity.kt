@@ -1,6 +1,7 @@
 package com.example.rapunzel
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,6 +29,17 @@ class ServicesActivity : AppCompatActivity() {
         runOnUiThread {
             fetchServices()
         }
+
+        addButtonServices.setOnClickListener {
+            val intent = Intent(this, addServicesActivity::class.java)
+            startActivity(intent)
+        }
+
+        deleteButtonServices.setOnClickListener {
+            val intent = Intent(this, deleteServicesActivity::class.java)
+            startActivity(intent)
+        }
+        
     }
     fun fetchServices(){
 

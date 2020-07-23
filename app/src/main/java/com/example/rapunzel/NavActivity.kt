@@ -31,6 +31,7 @@ class NavActivity : AppCompatActivity() {
         TasList.add(Tas("My Financial Situation", R.drawable.finance))
         TasList.add(Tas("My Services", R.drawable.services))
         TasList.add(Tas("My Service Locations", R.drawable.sloc))
+        TasList.add(Tas("My Weekly Working Hours",R.drawable.wwh))
         adapter = TaAdapter(this, TasList)
 
         gvTas.adapter = adapter
@@ -71,6 +72,10 @@ class NavActivity : AppCompatActivity() {
                 }
                 8 ->{
                     val intent = Intent(this, ServiceLocationsActivity::class.java)
+                    startActivity(intent)
+                }
+                9 ->{
+                    val intent = Intent(this, TimeChangeActivity::class.java)
                     startActivity(intent)
                 }
             }

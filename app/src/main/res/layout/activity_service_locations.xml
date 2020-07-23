@@ -8,11 +8,153 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_servicelocs"
+        android:layout_width="411dp"
+        android:layout_height="234dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        tools:ignore="MissingConstraints">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="413dp"
+        android:layout_height="359dp"
+        android:background="#C37272"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview_servicelocs"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Spinner
+            android:id="@+id/spinnercities"
+            android:layout_width="410dp"
+            android:layout_height="41dp"
+            android:background="#B5A4A4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.118" />
+
+        <Spinner
+            android:id="@+id/spinnerdistrict"
+            android:layout_width="407dp"
+            android:layout_height="46dp"
+            android:background="#B5A4A4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <Spinner
+            android:id="@+id/spinnerday"
+            android:layout_width="126dp"
+            android:layout_height="36dp"
+            android:background="#B6AD57"
+            android:entries="@array/days"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.01"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.548"
+            tools:ignore="MissingConstraints" />
+
+        <Spinner
+            android:id="@+id/spinnermonth"
+            android:layout_width="126dp"
+            android:layout_height="36dp"
+            android:background="#B6AD57"
+            android:entries="@array/months"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.546"
+            tools:ignore="MissingConstraints" />
+
+        <Spinner
+            android:id="@+id/spinneryear"
+            android:layout_width="126dp"
+            android:layout_height="36dp"
+            android:background="#B6AD57"
+            android:entries="@array/years"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.989"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.546"
+            tools:ignore="MissingConstraints" />
+
+        <Spinner
+            android:id="@+id/spinnerdaydel"
+            android:layout_width="126dp"
+            android:layout_height="36dp"
+            android:background="#B6AD57"
+            android:entries="@array/days"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.006"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.741"
+            tools:ignore="MissingConstraints" />
+
+        <Spinner
+            android:id="@+id/spinnermonthdel"
+            android:layout_width="126dp"
+            android:layout_height="36dp"
+            android:background="#B6AD57"
+            android:entries="@array/months"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.744"
+            tools:ignore="MissingConstraints" />
+
+        <Spinner
+            android:id="@+id/spinneryeardel"
+            android:layout_width="126dp"
+            android:layout_height="36dp"
+            android:background="#B6AD57"
+            android:entries="@array/years"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.989"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.741"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/addDateServ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.206"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.929" />
+
+        <Button
+            android:id="@+id/delDateServ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.744"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.929" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

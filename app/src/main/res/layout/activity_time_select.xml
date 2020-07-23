@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TimeChangeActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_times"
+        android:layout_width="408dp"
+        android:layout_height="244dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@+id/linearlayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="414dp"
+        android:layout_height="347dp"
+        android:background="#AEB84F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="414dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/colorGrey"
+            android:spinnerMode="dropdown"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="415dp"
+            android:layout_height="303dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            tools:ignore="MissingConstraints">
+
+            <EditText
+                android:id="@+id/dash"
+                android:layout_width="38dp"
+                android:layout_height="18dp"
+                android:background="#FFFFFF"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:text="-"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/endinghour"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.185"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/endinghour"
+                android:layout_width="48dp"
+                android:layout_height="29dp"
+                android:background="#E49393"
+                android:gravity="center"
+                android:text="12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/column2"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.182"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/startinghour"
+                android:layout_width="48dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="32dp"
+                android:background="#E49393"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/column1"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.182"
+                tools:ignore="MissingConstraints"
+                tools:text="11" />
+
+            <EditText
+                android:id="@+id/column1"
+                android:layout_width="18dp"
+                android:layout_height="26dp"
+                android:background="#FFFFFF"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:text=":"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/startingmin"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.191"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/column2"
+                android:layout_width="18dp"
+                android:layout_height="26dp"
+                android:background="#FFFFFF"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:text=":"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.74"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.191"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/startingmin"
+                android:layout_width="48dp"
+                android:layout_height="29dp"
+                android:background="#E49393"
+                android:gravity="center"
+                android:text="00"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/dash"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.182"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/endingmin"
+                android:layout_width="48dp"
+                android:layout_height="29dp"
+                android:layout_marginEnd="36dp"
+                android:background="#E49393"
+                android:gravity="center"
+                android:text="00"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/column2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.182"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/timebutton"
+                android:layout_width="97dp"
+                android:layout_height="37dp"
+                android:text="Update"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.34"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.36" />
+
+            <Button
+                android:id="@+id/timebutton2"
+                android:layout_width="93dp"
+                android:layout_height="39dp"
+                android:text="Delete"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.783"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.36" />
+
+            <Spinner
+                android:id="@+id/spinneradd"
+                android:layout_width="414dp"
+                android:layout_height="36dp"
+                android:background="@color/colorGrey"
+                android:entries="@array/days_of_week"
+                android:spinnerMode="dropdown"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.554"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/timebutton3"
+                android:layout_width="92dp"
+                android:layout_height="41dp"
+                android:text="Add"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.513"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinneradd"
+                app:layout_constraintVertical_bias="0.789" />
+
+            <EditText
+                android:id="@+id/endinghouradd"
+                android:layout_width="48dp"
+                android:layout_height="29dp"
+                android:background="#E49393"
+                android:gravity="center"
+                android:text="12"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.659"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/spinneradd"
+                app:layout_constraintVertical_bias="0.427"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/column2add"
+                android:layout_width="18dp"
+                android:layout_height="26dp"
+                android:background="#FFFFFF"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:text=":"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.727"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/spinneradd"
+                app:layout_constraintVertical_bias="0.441"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/dashadd"
+                android:layout_width="38dp"
+                android:layout_height="18dp"
+                android:background="#FFFFFF"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:text="-"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.543"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinneradd"
+                app:layout_constraintVertical_bias="0.198"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/column1add"
+                android:layout_width="18dp"
+                android:layout_height="26dp"
+                android:background="#FFFFFF"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:text=":"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.355"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/spinneradd"
+                app:layout_constraintVertical_bias="0.441"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/endingminadd"
+                android:layout_width="48dp"
+                android:layout_height="29dp"
+                android:background="#E49393"
+                android:gravity="center"
+                android:text="00"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.833"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/spinneradd"
+                app:layout_constraintVertical_bias="0.42"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/startinghouradd"
+                android:layout_width="48dp"
+                android:layout_height="29dp"
+                android:layout_marginTop="15dp"
+                android:background="#E49393"
+                android:gravity="center"
+                android:text="09"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.253"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinneradd"
+                app:layout_constraintVertical_bias="0.026"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:id="@+id/startingminadd"
+                android:layout_width="48dp"
+                android:layout_height="29dp"
+                android:layout_marginTop="15dp"
+                android:background="#E49393"
+                android:gravity="center"
+                android:text="00"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.433"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinneradd"
+                app:layout_constraintVertical_bias="0.026"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

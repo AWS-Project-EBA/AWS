@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".TimeChangeActivity" />
-        <activity android:name=".ServiceLocationsActivity"></activity>
+        <activity android:name=".deleteServicesActivity"></activity>
+        <activity android:name=".addServicesActivity" />
+        <activity android:name=".ServiceLocationsActivity" />
         <activity android:name=".ServicesActivity" />
         <activity android:name=".FinanceActivity" />
         <activity android:name=".AgendaActivity" />
